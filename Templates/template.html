@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Documentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+    body {
+        font-family: 'Segoe UI', Arial;
+        background-color: #1e1e1e;
+        color: #f5f5f5;
+        padding: 20px;
+    }
+
+    h2 {
+        border-bottom: 1px solid #444;
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }
+
+    .box {
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* 🔹 GRID layout */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    /* 🔹 Cards */
+    .card {
+        background: #333;
+        padding: 15px;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #ff7f50;
+    }
+
+    .card small {
+        color: #aaa;
+    }
+
+    /* 🔹 Badges */
+    /* 🔥 Badge base mejorado */
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin: 5px 5px 0 0;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+/* 🎯 Hover efecto 3D */
+.badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* Colores */
+.badge-source {
+    background-color: #1f77b4;
+    color: white;
+}
+
+.badge-related {
+    background-color: #9467bd;
+    color: white;
+}
+
+    .badge-product {
+        background-color: #2ca02c;
+        color: white;
+    }
+
+    .badge-related {
+        background-color: #9467bd;
+        color: white;
+    }
+
+    /* 🔹 Summary */
+    .summary-item {
+        margin-bottom: 10px;
+    }
+
+    .summary-label {
+        color: #ff7f50;
+        font-weight: bold;
+    }
+    
+    /* 🔹 histórico vertical */
+.history-item {
+    border-left: 3px solid #ff7f50;
+    padding-left: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+/* 🔸 puntito */
+.history-item::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff7f50;
+    border-radius: 50%;
+}
+
+/* 🔹 header */
+.history-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+/* 🔹 fecha */
+.history-date {
+    font-size: 13px;
+    color: #ccc;
+}
+
+/* 🔹 descripción */
+.history-body {
+    background-color: #333;
+    padding: 8px;
+    border-radius: 6px;
+    color: #eee;
+}
+
+/* 🔥 bordes suaves entre columnas */
+td + td {
+    border-left: 1px solid #333;
+}
+
+/* 🔥 columna comentario más cómoda */
+td:nth-child(3) {
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header */
+th {
+    background-color: #2f2f2f;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+/* Filas */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+    vertical-align: top;
+}
+
+/* 🔥 Zebra más contrastado */
+tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+tr:nth-child(odd) {
+    background-color: #1e1e1e;
+}
+
+/* 🔥 Hover más visible */
+tr:hover {
+    background-color: #3f3f3f;
+    transition: 0.2s;
+}
+
+/* 🔥 separación más clara entre filas */
+tbody tr {
+    border-bottom: 1px solid #555;
+}
+    
+</style>
+</head>
+
+<body>
+
+<!-- ================= SUMMARY ================= -->
+<h2>📌 Summary</h2>
+<div class="box">
+
+    {% if doc.summary %}
+        <div class="summary-item">
+            <span class="summary-label">Name:</span><br>
+            {{ doc.summary[0].name or "N/A" }}
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-label">Date:</span><br>
+            {{ doc.summary[0].created_date or "N/A" }}
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-label">Description:</span><br>
+            {{ doc.summary[0].description or "N/A" }}
+        </div>
+    {% else %}
+        No summary available
+    {% endif %}
+
+</div>
+
+<!-- ================= RELATED PROGRAMS ================= -->
+<h2>📎 Related Programs</h2>
+<div class="box">
+
+    {% if doc.related_programs %}
+        {% for p in doc.related_programs %}
+            <span class="badge badge-related">{{ p }}</span>
+        {% endfor %}
+    {% else %}
+        <p>No related programs</p>
+    {% endif %}
+
+</div>
+
+<!-- ================= SOURCES ================= -->
+<h2>🔗 Sources</h2>
+<div class="box">
+
+    {% if doc.sources %}
+        {% for s in doc.sources %}
+            <span class="badge badge-source">{{ s }}</span>
+        {% endfor %}
+    {% else %}
+        <p>No sources defined</p>
+    {% endif %}
+
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<h2>📦 Data Products</h2>
+<div class="box">
+
+    {% if doc.products %}
+    <div class="grid">
+        {% for p in doc.products %}
+        <div class="card">
+            <div class="card-title">📊 {{ p.name }}</div>
+
+            <div><span class="badge badge-product">{{ p.type }}</span></div>
+
+            <div style="margin-top:8px;">
+                <small>Description</small><br>
+                {{ p.description }}
+            </div>
+
+            <div style="margin-top:8px;">
+                <small>Process</small><br>
+                {{ p.process }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No products defined</p>
+    {% endif %}
+
+</div>
+
+<!-- ================= HISTORICAL ================= -->
+<h2>🕘 Historical Versions</h2>
+<div class="box">
+
+    {% if doc.versions %}
+        <div class="vertical-list">
+
+            {% for v in doc.versions %}
+            <div class="history-item">
+
+                <div class="history-header">
+                    <span class="history-date">📅 {{ v.date }}</span>
+                    <span class="badge badge-related">{{ v.user }}</span>
+                </div>
+
+                <div class="history-body">
+                    {{ v.description }}
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p>No historical versions available</p>
+    {% endif %}
+
+</div>
+
+<!-- ================= PROCESS COMMENTS ================= -->
+<h2>🧠 Process Comments</h2>
+<div class="box">
+
+{% if doc.process_comments %}
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Line</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for c in doc.process_comments %}
+        <tr>
+            <td>{{ c.order }}</td>
+
+            <td>
+                {% if "Step" in c.class %}
+                    <span class="badge badge-product">{{ c.class }}</span>
+                {% elif c.class == "Line Comment" %}
+                    <span class="badge badge-source">{{ c.class }}</span>
+                {% elif c.class == "Note" %}
+                    <span class="badge badge-related">{{ c.class }}</span>
+                {% else %}
+                    {{ c.class }}
+                {% endif %}
+            </td>
+
+            <td style="line-height:1.5;">
+                {{ c.comment }}
+            </td>
+
+            <td>
+                <small>{{ c.line }}</small>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% else %}
+<p>No process comments detected</p>
+{% endif %}
+
+</div>
