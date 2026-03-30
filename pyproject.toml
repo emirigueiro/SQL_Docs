@@ -1,0 +1,18 @@
+[project]
+name = "sql-docs"
+version = "0.1.0"
+description = "Generate HTML documentation from SQL queries"
+authors = [
+    { name="Emiliano Rigueiro" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "jinja2",
+    "pyyaml",
+    "pandas"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
