@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+sql_docs.egg-info/PKG-INFO
+sql_docs.egg-info/SOURCES.txt
+sql_docs.egg-info/dependency_links.txt
+sql_docs.egg-info/requires.txt
+sql_docs.egg-info/top_level.txt
+sqldocs/__init__.py
+sqldocs/main.py
+sqldocs/parser.py
+sqldocs/renderer.py
+sqldocs/Templates/__init__.py
+sqldocs/templates/template.html
