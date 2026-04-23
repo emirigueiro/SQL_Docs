@@ -1,16 +1,12 @@
-from pathlib import Path
-from sqldocs.parser import parse_sql_documentation
-from sqldocs.renderer import render_html
+import sys
+from sqldocs import generate_doc
 
 
 def main():
-    import sys
-    from .parser import parse_sql_documentation
-    from .renderer import render_html
-
     input_file = sys.argv[1]
-
-    doc = parse_sql_documentation(input_file)
-    html = render_html(doc)
-
+    html = generate_doc(input_file)
     print(html)
+
+
+if __name__ == "__main__":
+    main()
