@@ -4,9 +4,9 @@
 ___________________________________________________________________________________________________________________________________________
 
 
-SQL Docs is a framework designed to standardize SQL query documentation. Its goal is to provide a clear and consistent structure that facilitates
-readability, maintenance, and the automatic generation of documentation in HTML.
-It's a great idea to use this framework for your queries within your pipeline, and then finalize them with a Python script that generates the documents for each query.
+SQL Docs is a framework designed to standardize SQL query documentation. Its goal is to provide a clear and consistent structure that improves readability, maintainability, and enables automatic HTML documentation generation.
+
+It is highly recommended to use this framework to document your queries within your data pipelines, and then finalize the process with a Python script that generates documentation for each query.
 
 ___________________________________________________________________________________________________________________________________________
 
@@ -14,19 +14,18 @@ ________________________________________________________________________________
 
 The framework is divided into 7 sections:
 - Sections 1 to 5 must be completed before writing the SQL query.
-- Sections 6 and 7 accompany the writing of the query, describing its
-different parts.
+- Sections 6 and 7 are used during query development to describe its different parts.
 ___________________________________________________________________________________________________________________________________________
 
 ## 📑 Framework Structure
 
-*  1- Summary → Summary of the purpose of the query.
-*  2- Related Programs → Related queries.
-*  3- Sources → Data sources used.
-*  4- Products → Result of the query (table, view, insert, etc.).
-*  5- Historical Versions → Change log.
-*  6- Steps → Step-by-step comments and explanations of the process.
-*  7- Notes (NT) → Additional observations about the query.
+* 1. Summary → Overview of the query’s purpose.
+* 2. Related Programs → Related queries or processes.
+* 3. Sources → Data sources used.
+* 4. Products → Output of the query (table, view, insert, etc.).
+* 5. Historical Versions → Change log.
+* 6. Steps → Step-by-step explanation of the logic.
+* 7. Notes (NT) → Additional observations about the query.
 ___________________________________________________________________________________________________________________________________________
 
 ## ⚠️ Important Notes
@@ -91,7 +90,7 @@ ________________________________________________________________________________
 
 ## 📑 HTML Example:
 
-![alt text](Screeshot HTML test.jpg)
+![Screenshot](Screeshot HTML test.jpg)
 ___________________________________________________________________________________________________________________________________________
 
 ## 📑 Framework to copy:
