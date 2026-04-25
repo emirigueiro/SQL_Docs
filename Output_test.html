@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Documentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+    body {
+        font-family: 'Segoe UI', Arial;
+        background-color: #1e1e1e;
+        color: #f5f5f5;
+        padding: 20px;
+    }
+
+    h2 {
+        border-bottom: 1px solid #444;
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }
+
+    .box {
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* 🔹 GRID layout */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    /* 🔹 Cards */
+    .card {
+        background: #333;
+        padding: 15px;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #ff7f50;
+    }
+
+    .card small {
+        color: #aaa;
+    }
+
+    /* 🔹 Badges */
+    /* 🔥 Badge base mejorado */
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin: 5px 5px 0 0;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+/* 🎯 Hover efecto 3D */
+.badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* Colores */
+.badge-source {
+    background-color: #1f77b4;
+    color: white;
+}
+
+.badge-related {
+    background-color: #9467bd;
+    color: white;
+}
+
+    .badge-product {
+        background-color: #2ca02c;
+        color: white;
+    }
+
+    .badge-related {
+        background-color: #9467bd;
+        color: white;
+    }
+
+    /* 🔹 Summary */
+    .summary-item {
+        margin-bottom: 10px;
+    }
+
+    .summary-label {
+        color: #ff7f50;
+        font-weight: bold;
+    }
+    
+    /* 🔹 histórico vertical */
+.history-item {
+    border-left: 3px solid #ff7f50;
+    padding-left: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+/* 🔸 puntito */
+.history-item::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff7f50;
+    border-radius: 50%;
+}
+
+/* 🔹 header */
+.history-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+/* 🔹 fecha */
+.history-date {
+    font-size: 13px;
+    color: #ccc;
+}
+
+/* 🔹 descripción */
+.history-body {
+    background-color: #333;
+    padding: 8px;
+    border-radius: 6px;
+    color: #eee;
+}
+
+/* 🔥 bordes suaves entre columnas */
+td + td {
+    border-left: 1px solid #333;
+}
+
+/* 🔥 columna comentario más cómoda */
+td:nth-child(3) {
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header */
+th {
+    background-color: #2f2f2f;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+/* Filas */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+    vertical-align: top;
+}
+
+/* 🔥 Zebra más contrastado */
+tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+tr:nth-child(odd) {
+    background-color: #1e1e1e;
+}
+
+/* 🔥 Hover más visible */
+tr:hover {
+    background-color: #3f3f3f;
+    transition: 0.2s;
+}
+
+/* 🔥 separación más clara entre filas */
+tbody tr {
+    border-bottom: 1px solid #555;
+}
+    
+</style>
+</head>
+
+<body>
+
+<!-- ================= SUMMARY ================= -->
+<h2>📌 Summary</h2>
+<div class="box">
+
+    
+        <div class="summary-item">
+            <span class="summary-label">Name:</span><br>
+            customer_churn_analysis
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-label">Date:</span><br>
+            2025-01-10
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-label">Description:</span><br>
+            Identifies customers with high churn probability based on their last purchase date, activity frequency and product category. Used by the retention team to trigger re-engagement campaigns.
+        </div>
+    
+
+</div>
+
+<!-- ================= RELATED PROGRAMS ================= -->
+<h2>📎 Related Programs</h2>
+<div class="box">
+
+    
+        
+            <span class="badge badge-related">campaign_trigger.py</span>
+        
+            <span class="badge badge-related">retention_dashboard.twbx</span>
+        
+            <span class="badge badge-related">customer_segmentation.sql</span>
+        
+    
+
+</div>
+
+<!-- ================= SOURCES ================= -->
+<h2>🔗 Sources</h2>
+<div class="box">
+
+    
+        
+            <span class="badge badge-source">prod_bronze.crm.customers</span>
+        
+            <span class="badge badge-source">prod_bronze.sales.transactions</span>
+        
+            <span class="badge badge-source">prod_gold.marketing.campaign_history</span>
+        
+            <span class="badge badge-source">prod_silver.product.catalog</span>
+        
+    
+
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<h2>📦 Data Products</h2>
+<div class="box">
+
+    
+    <div class="grid">
+        
+        <div class="card">
+            <div class="card-title">📊 prod_gold.marketing.churn_candidates</div>
+
+            <div><span class="badge badge-product">table</span></div>
+
+            <div style="margin-top:8px;">
+                <small>Description</small><br>
+                Final table with customers flagged as high churn risk including their last activity date and assigned segment.
+            </div>
+
+            <div style="margin-top:8px;">
+                <small>Process</small><br>
+                create or replace
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">📊 prod_gold.marketing.churn_summary</div>
+
+            <div><span class="badge badge-product">table</span></div>
+
+            <div style="margin-top:8px;">
+                <small>Description</small><br>
+                Aggregated summary of churn candidates by product category and customer segment used for executive reporting.
+            </div>
+
+            <div style="margin-top:8px;">
+                <small>Process</small><br>
+                create or replace
+            </div>
+        </div>
+        
+    </div>
+    
+
+</div>
+
+<!-- ================= HISTORICAL ================= -->
+<h2>🕘 Historical Versions</h2>
+<div class="box">
+
+    
+        <div class="vertical-list">
+
+            
+            <div class="history-item">
+
+                <div class="history-header">
+                    <span class="history-date">📅 2025-01-10</span>
+                    <span class="badge badge-related">john.doe</span>
+                </div>
+
+                <div class="history-body">
+                    Initial creation of churn analysis query.
+                </div>
+
+            </div>
+            
+            <div class="history-item">
+
+                <div class="history-header">
+                    <span class="history-date">📅 2025-02-03</span>
+                    <span class="badge badge-related">jane.smith</span>
+                </div>
+
+                <div class="history-body">
+                    Added product category filter and adjusted inactivity threshold from 60 to 45 days.
+                </div>
+
+            </div>
+            
+            <div class="history-item">
+
+                <div class="history-header">
+                    <span class="history-date">📅 2025-03-15</span>
+                    <span class="badge badge-related">john.doe</span>
+                </div>
+
+                <div class="history-body">
+                    Included campaign_history source to exclude customers already contacted.
+                </div>
+
+            </div>
+            
+
+        </div>
+    
+
+</div>
+
+<!-- ================= PROCESS COMMENTS ================= -->
+<h2>🧠 Process Comments</h2>
+<div class="box">
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Line</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        
+        <tr>
+            <td>1</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 1</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Filter active customers from the last 12 months
+            </td>
+
+            <td>
+                <small>51</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>2</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 2</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Calculate inactivity days and flag churn candidates
+            </td>
+
+            <td>
+                <small>62</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>3</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 3</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Exclude customers already contacted in active campaigns
+            </td>
+
+            <td>
+                <small>80</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>4</td>
+
+            <td>
+                
+                    <span class="badge badge-related">Note</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Only exclude customers in currently active campaigns, not historical ones
+            </td>
+
+            <td>
+                <small>86</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>5</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 4</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Enrich with product category of last purchase
+            </td>
+
+            <td>
+                <small>91</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>6</td>
+
+            <td>
+                
+                    <span class="badge badge-related">Note</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Join on last purchase date to get the most recent product category
+            </td>
+
+            <td>
+                <small>99</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>7</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 5</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Final output - churn candidates table
+            </td>
+
+            <td>
+                <small>104</small>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>8</td>
+
+            <td>
+                
+                    <span class="badge badge-product">Step 6</span>
+                
+            </td>
+
+            <td style="line-height:1.5;">
+                Aggregated summary by category and segment
+            </td>
+
+            <td>
+                <small>116</small>
+            </td>
+        </tr>
+        
+
+    </tbody>
+</table>
+
+
+
+</div>

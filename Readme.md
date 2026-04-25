@@ -1,14 +1,13 @@
 
-![Logo SQL Docs](./Pictures/Logo_SQL_Docs_Wide.PNG)
+![Logo SQL Docs](Logo_SQL_Docs_Wide.PNG)
 
 ___________________________________________________________________________________________________________________________________________
 
 
- SQL Docs is a framework designed to standardize SQL query documentation. Its goal is to provide a clear and consistent structure that facilitates
+SQL Docs is a framework designed to standardize SQL query documentation. Its goal is to provide a clear and consistent structure that facilitates
 readability, maintenance, and the automatic generation of documentation in HTML.
 
 ___________________________________________________________________________________________________________________________________________
-
 
 ## 🎯 Objective
 
@@ -16,7 +15,6 @@ The framework is divided into 7 sections:
 - Sections 1 to 5 must be completed before writing the SQL query.
 - Sections 6 and 7 accompany the writing of the query, describing its
 different parts.
-
 ___________________________________________________________________________________________________________________________________________
 
 ## 📑 Framework Structure
@@ -28,7 +26,6 @@ ________________________________________________________________________________
 *  5- Historical Versions → Change log.
 *  6- Steps → Step-by-step comments and explanations of the process.
 *  7- Notes (NT) → Additional observations about the query.
-
 ___________________________________________________________________________________________________________________________________________
 
 ## ⚠️ Important Notes
@@ -36,7 +33,23 @@ ________________________________________________________________________________
 -   It is mandatory to follow the framework’s wording to allow for the subsequent automatic generation of HTML.
 -   Sections can be omitted depending on project needs (this does not affect HTML export).
 -   Each section must begin and end with the correct syntax.
+___________________________________________________________________________________________________________________________________________
 
+## 📦 Installation
+pip install sqldocs
+___________________________________________________________________________________________________________________________________________
+
+## ⚠️ Example use
+
+from sqldocs import generate_doc
+from IPython.display import display, HTML
+
+with open("customer_churn_analysis.sql", "r", encoding="utf-8") as f:
+    sql_content = f.read()
+
+doc = generate_doc(sql_content)
+
+display(HTML(doc))
 ___________________________________________________________________________________________________________________________________________
 
 ## 📑 Details of each framework section:
@@ -122,6 +135,6 @@ ________________________________________________________________________________
 -- STEP 1: use this for explain the main process
 -- STEP 2: use this for explain the main process
 -- STEP 3: use this for explain the main process
--- LC: Use this espace for specials lines coments
+-- NT: special comment for a specific line
 
 ___________________________________________________________________________________________________________________________________________

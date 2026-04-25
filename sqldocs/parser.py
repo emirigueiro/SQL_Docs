@@ -10,12 +10,24 @@ def extract_section(sql: str, section_name: str) -> str:
     match = re.search(pattern, sql, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else ""
 
-
 def clean_yaml_lines(section: str) -> str:
     lines = section.splitlines()
-    cleaned = [re.sub(r"^\s*--\s?", "", line) for line in lines if line.strip()]
+    cleaned = []
+    for line in lines:
+        if not line.strip():
+            continue
+        # Ignorar líneas separadoras (ej: -- -----)
+        stripped = re.sub(r"^\s*--\s?", "", line)
+        if re.match(r"^-{3,}$", stripped.strip()):
+            continue
+        # Si tiene "clave: valor", envolver el valor en comillas
+        if re.match(r"^\w[\w\s]*:", stripped):
+            key, _, value = stripped.partition(":")
+            value = value.strip()
+            if value and not value.startswith(("'", '"', '-', '[')):
+                stripped = f'{key}: "{value}"'
+        cleaned.append(stripped)
     return "\n".join(cleaned)
-
 
 def parse_yaml_section(sql: str, section_name: str):
     raw = extract_section(sql, section_name)
