@@ -6,6 +6,7 @@ ________________________________________________________________________________
 
 SQL Docs is a framework designed to standardize SQL query documentation. Its goal is to provide a clear and consistent structure that facilitates
 readability, maintenance, and the automatic generation of documentation in HTML.
+It's a great idea to use this framework for your queries within your pipeline, and then finalize them with a Python script that generates the documents for each query.
 
 ___________________________________________________________________________________________________________________________________________
 
@@ -41,7 +42,7 @@ pip install sqldocs
 ```
 ___________________________________________________________________________________________________________________________________________
 
-## ⚠️ Example use
+## 📑 Example use
 
 ```python
 from sqldocs import generate_doc
